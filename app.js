@@ -24,9 +24,13 @@ io.attach(server);
 
 io.on('connection', function(socket) {
     console.log('User connected');
+    socket.emit('connected', { sID: `${socket.id}`, message: 'new connection' });
 
     // Listen for disconnect event
     socket.on('disconnect', function() {
         console.log('A user disconnected');
+
+        message = `${socket.id} has left the chat.`;
+        io.emit('user_disconnect', message);
     })
 })
