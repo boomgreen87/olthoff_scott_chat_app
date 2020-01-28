@@ -1,6 +1,9 @@
 var express = require('express');
 var app = express();
 
+// Import the socket.io library
+const io = require('socket.io')(); // Instantiate the library right away with the () method -> makes it run
+
 const port = process.env.PORT || 3030;
 
 // tell express where our static files are (js, images, css etc)
@@ -13,3 +16,17 @@ app.get('/', (req, res) => {
 const server = app.listen(port, () => {
     console.log(`app is running on port ${port}`);
 });
+
+// This is all of our socket.io messaging functionality
+
+// Attach socket.io
+io.attach(server);
+
+io.on('connection', function(socket) {
+    console.log('User connected');
+
+    // Listen for disconnect event
+    socket.on('disconnect', function() {
+        console.log('A user disconnected');
+    })
+})
