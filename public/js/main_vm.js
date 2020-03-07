@@ -34,7 +34,7 @@ const vm = new Vue({
 
             socket.emit('chat_message', {
                 content: this.message,
-                name: this.nickName || "Anonymous (Guy Foxes)"
+                name: this.nickName || "Some Rando"
             })
 
             this.message = "";
