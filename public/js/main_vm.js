@@ -4,18 +4,33 @@ import ChatMessage from "./modules/ChatMessage.js";
 const socket = io();
 
 function setUserId({sID, message}) {
-    //debugger;
+    // debugger;
     vm.socketID = sID;
+    console.log(message);
+
+    // Plays sound when a user connects
+    var connectSound = new Audio("audio/user_connect.mp3");
+    connectSound.play();
 };
 
-function runDisconnectMessage(packet) {
+function runDisconnectMessage(message) {
     //debugger;
-    console.log(packet);
+    console.log(message);
+
+    // Plays sound when a user disconnects
+    var disconnectSound = new Audio("audio/user_disconnect.mp3");
+    disconnectSound.play();
 };
 
 function appendNewMessage(msg) {
     // Take the incoming message and push it into the Vue instance
     vm.messages.push(msg);
+    
+    // Plays sound when messages are received
+    if(msg.id !== this.id){
+        var newMessageSound = new Audio("audio/message.mp3");
+        newMessageSound.play();
+    }
 };
 
 // This is our main Vue instance
