@@ -3,10 +3,12 @@ import ChatMessage from "./modules/ChatMessage.js";
 
 const socket = io();
 
-function setUserId({sID, message}) {
+function setUserId({sID, message, count}) {
     // debugger;
     vm.socketID = sID;
     console.log(message);
+
+    vm.userNum = count;
 };
 
 function connectSound(){
