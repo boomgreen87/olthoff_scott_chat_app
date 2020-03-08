@@ -24,7 +24,8 @@ io.attach(server);
 
 io.on('connection', function(socket) {
     console.log('User connected');
-    socket.broadcast.emit('connected', { sID: `${socket.id}`, message: 'New Connection' });
+    socket.emit('connected', { sID: `${socket.id}`, message: 'New Connection' });
+    socket.broadcast.emit('new_user');
 
     // Listen for an incoming message from a user (socket refers to an individual user)
     // msg is the incoming message from that user
