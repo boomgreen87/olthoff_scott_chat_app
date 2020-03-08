@@ -13,6 +13,9 @@ function connectSound(){
     // Plays sound when a user connects
     var connectSound = new Audio("audio/user_connect.mp3");
     connectSound.play();
+
+    // Adds a user to userNum when someone connects
+    vm.userNum += 1;
 }
 
 function runDisconnectMessage(message) {
@@ -22,6 +25,9 @@ function runDisconnectMessage(message) {
     // Plays sound when a user disconnects
     var disconnectSound = new Audio("audio/user_disconnect.mp3");
     disconnectSound.play();
+
+    // Subtracts a user from userNum when someone disconnects
+    vm.userNum -= 1;
 };
 
 function appendNewMessage(msg) {
@@ -41,7 +47,8 @@ const vm = new Vue({
         socketID: "",
         messages: [],
         message: "",
-        nickName: ""
+        nickName: "",
+        userNum: 0
     },
 
     methods: {
