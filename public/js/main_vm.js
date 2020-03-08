@@ -8,6 +8,7 @@ function setUserId({sID, message, count}) {
     vm.socketID = sID;
     console.log(message);
 
+    // Sets userNum to current number of other users in room when joining
     vm.userNum = count;
 };
 
