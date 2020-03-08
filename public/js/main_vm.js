@@ -7,11 +7,14 @@ function setUserId({sID, message}) {
     // debugger;
     vm.socketID = sID;
     console.log(message);
+};
 
+function connectSound(){
     // Plays sound when a user connects
     var connectSound = new Audio("audio/user_connect.mp3");
     connectSound.play();
-};
+    console.log("Sound Played");
+}
 
 function runDisconnectMessage(message) {
     //debugger;
@@ -49,7 +52,7 @@ const vm = new Vue({
 
             socket.emit('chat_message', {
                 content: this.message,
-                name: this.nickName || "Some Rando"
+                name: this.nickName || "Anonymous"
             })
 
             this.message = "";
@@ -67,5 +70,6 @@ const vm = new Vue({
 
 // Some event handling -> These events are coming from the server
 socket.addEventListener('connected', setUserId);
+socket.addEventListener('new_user', connectSound);
 socket.addEventListener('user_disconnect', runDisconnectMessage);
 socket.addEventListener('new_message', appendNewMessage);
