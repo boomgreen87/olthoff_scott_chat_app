@@ -13,7 +13,6 @@ function connectSound(){
     // Plays sound when a user connects
     var connectSound = new Audio("audio/user_connect.mp3");
     connectSound.play();
-    console.log("Sound Played");
 }
 
 function runDisconnectMessage(message) {
