@@ -12,13 +12,16 @@
 <body>
 	<main id="app">
 		<section class="form-container">
-			<label for="nickname">Your Nickname (optional)</label>
+			<h1>ChatterBox</h1>
+
+			<label for="nickname">Your Nickname (Optional):</label>
 			<input v-model="nickName" type="text" id="nickname" class="nickname" placeholder="What is your nickname?">
 
 			<form>
-				<label for="message">Something to say?</label>
-				<textarea v-model="message" class="message" type="text" autocomplete="off" id="textarea"></textarea>
-				<input @click.prevent="dispatchMessage" type="submit" value="Send">
+				<label for="message">Message:</label>
+				<!-- CTRL + Enter will send the message as well -->
+				<textarea v-model="message" v-on:keyup.ctrl.13="dispatchMessage" class="message" type="text" autocomplete="off" id="textarea"></textarea> 
+				<input @click.13.prevent="dispatchMessage" type="submit" value="Send" id="submitBtn">
 			</form>
 
 			<p id="userCount">Users in Chat: {{userNum}}</p>
